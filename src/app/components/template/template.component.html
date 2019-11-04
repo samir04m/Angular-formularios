@@ -12,9 +12,12 @@
                minlength="2"
                required
                #nombre="ngModel">
-         <span class="text-secondary" *ngIf="nombre.errors?.required">Este campo es requerido</span>
-         <span class="text-danger"></span>
-         <div>
+
+         <div class="pl-1">
+            <small class="text-secondary" *ngIf="nombre.errors?.required">Este campo es requerido.</small>
+            <small class="text-danger"  *ngIf="nombre.errors?.minlength">
+               Por lo menos {{ nombre.errors?.minlength.requiredLength }} caracteres.
+            </small>
          </div>
       </div>
    </div>
@@ -27,7 +30,14 @@
                name="apellido"
                [(ngModel)]="usuario.apellido"
                minlength="2"
-               required>
+               required
+               #apellido="ngModel">
+         <div class="pl-1">
+            <small class="text-secondary" *ngIf="apellido.errors?.required">Este campo es requerido.</small>
+            <small class="text-danger"  *ngIf="apellido.errors?.minlength">
+               Por lo menos {{ apellido.errors?.minlength.requiredLength }} caracteres.
+            </small>
+         </div>
       </div>
    </div>
    <div class="form-group row">
@@ -39,7 +49,16 @@
                name="email"
                [(ngModel)]="usuario.email"
                required
-               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+               #email="ngModel">
+
+         <div class="pl-1">
+            <small class="text-secondary" *ngIf="email.errors?.required">Este campo es requerido.</small>
+            <small class="text-danger"  *ngIf="email.errors?.pattern">
+               Formato de correo invalido. (nombre@correo.com)
+            </small>
+         </div>
+
          <br>
          <button type="submit"  class="btn btn-outline-primary">Guardar</button>
       </div>

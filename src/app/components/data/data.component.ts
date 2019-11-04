@@ -23,25 +23,36 @@ export class DataComponent implements OnInit {
       this.forma = new FormGroup({
 
          'nombreCompleto': new FormGroup ({
-            'nombre': new FormControl(this.usuario.nombreCompleto.nombre, [
+            'nombre': new FormControl('', [
                                              Validators.required,
                                              Validators.minLength(3)
                                           ]),
-            'apellido': new FormControl(this.usuario.nombreCompleto.apellido, [
+            'apellido': new FormControl('', [
                                              Validators.required,
                                              Validators.minLength(3)
                                           ])
          }),
-         'email': new FormControl(this.usuario.email , [
+         'email': new FormControl('', [
                                        Validators.required,
                                        Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$")
                                     ])
       });
+
+      this.forma.setValue(this.usuario);
+
    }
 
    guardarCambios(){
       console.log(this.forma.value);
       console.log(this.forma);
+
+      this.forma.reset ({
+         nombreCompleto: {
+            nombre: "",
+            apellido: ""
+         },
+         email:""
+      });
    }
 
    ngOnInit() {

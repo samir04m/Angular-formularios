@@ -12,7 +12,8 @@ export class TemplateComponent implements OnInit {
       nombre:null,
       apellido:null,
       email: null,
-      pais: "CA"
+      pais: "CA",
+      sexo: "Masculino"
    }
 
    paises = [

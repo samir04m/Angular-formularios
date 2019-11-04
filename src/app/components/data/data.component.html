@@ -2,38 +2,40 @@
 <hr>
 <form [formGroup]="forma" (ngSubmit)="guardarCambios()" novalidate="novalidate">
 
-   <div class="form-group row">
-      <label for="" class="col-sm-2 col-form-label col-form-label-sm">Nombre</label>
-      <div class="col-sm-10">
-         <input [ngClass]="{ 'is-invalid': !forma.get('nombre').valid  && forma.get('nombre').touched }"
-               type="text"
-               class="form-control form-control-sm"
-               placeholder="Nombre"
-               formControlName="nombre">
+   <div formGroupName="nombreCompleto">
+      <div class="form-group row">
+         <label for="" class="col-sm-2 col-form-label col-form-label-sm">Nombre</label>
+         <div class="col-sm-10">
+            <input [ngClass]="{ 'is-invalid': !forma.get('nombreCompleto.nombre').valid  && forma.get('nombreCompleto.nombre').touched }"
+                  type="text"
+                  class="form-control form-control-sm"
+                  placeholder="Nombre"
+                  formControlName="nombre">
 
-         <div class="pl-1 invalid-feedback">
-            <span *ngIf="forma.controls['nombre'].errors?.required">Este campo es requerido.</span>
-            <span *ngIf="forma.controls['nombre'].errors?.minlength">
-               Por lo menos {{ forma.controls['nombre'].errors?.minlength.requiredLength }} caracteres.
-            </span>
+            <div class="pl-1 invalid-feedback">
+               <span *ngIf="forma.get('nombreCompleto.nombre').errors?.required">Este campo es requerido.</span>
+               <span *ngIf="forma.get('nombreCompleto.nombre').errors?.minlength">
+                  Por lo menos {{ forma.get('nombreCompleto.nombre').errors?.minlength.requiredLength }} caracteres.
+               </span>
+            </div>
          </div>
       </div>
-   </div>
 
-   <div class="form-group row">
-      <label for="" class="col-sm-2 col-form-label col-form-label-sm">Apellido</label>
-      <div class="col-sm-10">
-         <input [ngClass]="{ 'is-invalid': !forma.get('apellido').valid  && forma.get('apellido').touched }"
-               type="text"
-               class="form-control form-control-sm"
-               placeholder="Apellido"
-               formControlName="apellido">
+      <div class="form-group row">
+         <label for="" class="col-sm-2 col-form-label col-form-label-sm">Apellido</label>
+         <div class="col-sm-10">
+            <input [ngClass]="{ 'is-invalid': !forma.get('nombreCompleto.apellido').valid  && forma.get('nombreCompleto.apellido').touched }"
+                  type="text"
+                  class="form-control form-control-sm"
+                  placeholder="Apellido"
+                  formControlName="apellido">
 
-         <div class="pl-1 invalid-feedback">
-            <span *ngIf="forma.controls['apellido'].errors?.required">Este campo es requerido.</span>
-            <span *ngIf="forma.controls['apellido'].errors?.minlength">
-               Por lo menos {{ forma.controls['apellido'].errors?.minlength.requiredLength }} caracteres.
-            </span>
+            <div class="pl-1 invalid-feedback">
+               <span *ngIf="forma.get('nombreCompleto.apellido').errors?.required">Este campo es requerido.</span>
+               <span *ngIf="forma.get('nombreCompleto.apellido').errors?.minlength">
+                  Por lo menos {{ forma.get('nombreCompleto.apellido').errors?.minlength.requiredLength }} caracteres.
+               </span>
+            </div>
          </div>
       </div>
    </div>
@@ -69,3 +71,7 @@
    <h3>{{forma.valid}}</h3>
 
 </form>
+
+<pre>
+   {{ usuario | json }}
+</pre>

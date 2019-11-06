@@ -61,13 +61,44 @@
    </div>
 
    <div class="form-group row">
+      <label for="" class="col-sm-2 col-form-label col-form-label-sm">Password</label>
+      <div class="col-sm-10">
+         <input [ngClass]="{ 'is-invalid': !forma.get('password1').valid  && forma.get('password1').touched }"
+               type="text"
+               class="form-control form-control-sm"
+               placeholder="Password"
+               formControlName="password1">
+
+         <div class="pl-1 invalid-feedback">
+            <span *ngIf="forma.get('password1').errors?.required">Este campo es requerido.</span>
+         </div>
+      </div>
+   </div>
+
+   <div class="form-group row">
+      <label for="" class="col-sm-2 col-form-label col-form-label-sm">Confirm Password</label>
+      <div class="col-sm-10">
+         <input [ngClass]="{ 'is-invalid': !forma.get('password2').valid  && forma.get('password2').touched }"
+               type="text"
+               class="form-control form-control-sm"
+               placeholder="Confirm Password"
+               formControlName="password2">
+
+         <div class="pl-1 invalid-feedback">
+            <span *ngIf="forma.get('password2').errors?.required">Este campo es requerido.</span>
+            <span *ngIf="forma.get('password2').errors?.noiguales">Los passwords no son iguales</span>
+         </div>
+      </div>
+   </div>
+
+   <div class="form-group row">
       <label for="" class="col-sm-2 col-form-label col-form-label-sm">Pasatiempos</label>
       <div class="col-sm-10" formArrayName="pasatiempos">
          <input *ngFor="let pasatiempo of forma.controls['pasatiempos'].controls; let i = index"
                [formControlName]="i"
                type="text"
-               class="form-control"
-               name="">
+               class="form-control my-2"
+               placeholder="Pasatiempo {{i}}">
 
       </div>
       <button (click)="agregarPasatiempo()"

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-data',
@@ -41,6 +42,7 @@ export class DataComponent implements OnInit {
          'pasatiempos': new FormArray ([
             new FormControl('Correr', Validators.required)
          ]),
+         'username': new FormControl('', Validators.required, this.existeUsuario),
          'password1': new FormControl('', Validators.required),
          'password2': new FormControl()
       });
@@ -79,12 +81,31 @@ export class DataComponent implements OnInit {
    }
 
 
-
    agregarPasatiempo(){
       (<FormArray>this.forma.controls['pasatiempos']).push(
          new FormControl('Dormir', Validators.required)
       )
    }
+
+   existeUsuario( control : FormControl ) : Promise<any> | Observable <any> {
+       let promesa = new Promise(
+           (resolve, reject)=>{
+
+               setTimeout(()=>{
+                   if (control.value === "samir"){
+                       resolve( { existe:true } )
+                   }else{
+                       resolve( null )
+                   }
+               }, 1000)
+
+           }
+       )
+
+       return promesa;
+
+   }
+
 
    ngOnInit() {
    }
